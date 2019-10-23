@@ -1,0 +1,9 @@
+---
+- name: playing with a local fact
+  hosts: all
+  gather_facts: true
+
+  tasks:
+  - debug:
+      msg: Only display this message on small machines
+    when: ansible_facts.ansible_local.preferences.general.type == "small"

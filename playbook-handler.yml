@@ -1,0 +1,14 @@
+---
+- name: playing with handlers
+  hosts: all
+  tasks:
+  - name: changing something
+    lineinfile:
+      name: /etc/motd
+      line: demo handler hello world
+    notify: run_something_else
+
+  handlers:
+  - name: run_something_else
+    debug:
+      msg: This is a triggered handler

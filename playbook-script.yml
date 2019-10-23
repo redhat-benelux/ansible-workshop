@@ -1,0 +1,19 @@
+---
+- name: running scripts inside a playbook
+  hosts: all
+  tasks:
+  - name: copy the script
+    copy:
+      src: simple-script.sh
+      dest: /tmp/simple-script.sh
+
+  - name: run the script
+    command: bash /tmp/simple-script.sh
+    register: script_output
+    ignore_errors: true
+
+  - name: run this task if the script fails
+    debug:
+      msg: this message is displayed because the script failed
+    when: script_output.rc != 0
+    

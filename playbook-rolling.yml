@@ -1,0 +1,9 @@
+---
+- name: playing with serial
+  hosts: all
+  serial: 3
+  tasks:
+  - name: simple task
+    debug:
+      msg: doing something simple
+

@@ -1,0 +1,5 @@
+---
+# tasks file for my_new_role
+- name: simple task
+  debug:
+    msg: simple task

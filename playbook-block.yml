@@ -1,0 +1,15 @@
+- name: playing with blocks
+  hosts: all 
+  tasks:
+    - block:
+        - name: make something fail
+          shell:
+            cmd: exit 1
+      rescue:
+        - name: rescuing the failure
+          shell:
+            cmd: echo 'fail is a rescue'
+      always:
+        - name: always run
+          shell:
+            cmd: echo 'this is always running'

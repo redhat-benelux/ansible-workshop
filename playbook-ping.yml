@@ -1,0 +1,14 @@
+--- 
+- name: testing availability of nodes 
+  hosts: all
+  tasks:
+  - name: ping
+    ping:
+
+  - name: whoami
+    shell: whoami
+    register: output
+
+  - name: display whoami
+    debug:
+      var: output.stdout_lines

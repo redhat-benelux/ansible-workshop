@@ -1,0 +1,22 @@
+---
+- name: install apache and start it at boot
+  hosts: all
+  gather_facts: no
+
+  vars:
+    package_name: httpd
+
+  tasks:
+  - name: install package
+    yum:
+      name: "{{ package_name }}"
+      state: latest
+
+  - name: make sure it starts at boot
+    service:
+      name: httpd
+      state: started
+
+  - name: display an inventory group var
+    debug:
+      var: key1

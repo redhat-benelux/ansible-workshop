@@ -1,0 +1,15 @@
+---
+- name: playing with vault
+  hosts: all
+  gather_facts: no
+
+#  include_vars:
+#    file: vault.yml
+
+  vars_files:
+    - vault.yml
+
+  tasks:
+  - name: display a secret
+    debug:
+      var: password

@@ -1,0 +1,10 @@
+---
+- name: playing with loops
+  hosts: all
+  tasks:
+  - name: create users
+    user:
+      name: "{{ item }}"
+    loop:
+      - user1
+      - user2

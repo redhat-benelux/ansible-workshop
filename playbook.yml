@@ -1,0 +1,15 @@
+---
+- name: install apache and start it at boot
+  hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: install package
+    yum:
+      name: httpd
+      state: latest
+
+  - name: make sure it starts at boot
+    service:
+      name: httpd
+      state: started

@@ -1,0 +1,13 @@
+---
+- name: plyaing with tags
+  hosts: dev
+  tasks:
+  - name: first take
+    shell: echo hello
+    tags:
+      - abn
+
+  - name: second task
+    shell: echo hello ibm
+    tags:
+      - ibm

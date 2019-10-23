@@ -1,0 +1,38 @@
+---
+- name: demo
+  hosts: all
+  tasks:
+    - name: blah
+      redhat_subscription:
+          username: undefined # not required. access.redhat.com or Sat6  username
+          server_hostname: undefined # not required. Specify an alternative Red Hat Subscription Management or Sat6 server
+          pool_ids:  # not required. Specify subscription pool IDs to consume. Prefer over I(pool) when possible as it is much faster.
+      A pool ID may be specified as a C(string) - just the pool ID (ex. C(0123456789abcdef0123456789abcdef)),
+      or as a C(dict) with the pool ID as the key, and a quantity as the value (ex.
+      C(0123456789abcdef0123456789abcdef: 2). If the quantity is provided, it is used to consume multiple
+      entitlements from a pool (the pool must support this). Mutually exclusive with I(pool).
+      
+          consumer_id: undefined # not required. References an existing consumer ID to resume using a previous registration
+      for this system. If the  system's identity certificate is lost or corrupted,
+      this option allows it to resume using its previous identity and subscriptions.
+      The default is to not specify a consumer ID so a new ID is created.
+      
+          rhsm_repo_ca_cert: undefined # not required. Specify an alternative location for a CA certificate for CDN
+          auto_attach: no # not required. Upon successful registration, auto-consume available subscriptions,Added in favor of deprecated autosubscribe in 2.5.
+          server_insecure: undefined # not required. Enable or disable https server certificate verification when connecting to C(server_hostname)
+          activationkey: undefined # not required. supply an activation key for use with registration
+          server_proxy_password: undefined # not required. Specify a password for HTTP proxy with basic authentication
+          consumer_name: undefined # not required. Name of the system to register, defaults to the hostname
+          rhsm_baseurl: undefined # not required. Specify CDN baseurl
+          pool: ^$ # not required. Specify a subscription pool name to consume.  Regular expressions accepted. Use I(pool_ids) instead if
+      possible, as it is much faster. Mutually exclusive with I(pool_ids).
+      
+          server_proxy_port: undefined # not required. Specify a HTTP proxy port
+          password: undefined # not required. access.redhat.com or Sat6 password
+          consumer_type: undefined # not required. The type of unit to register, defaults to system
+          org_id: undefined # not required. Organization ID to use in conjunction with activationkey
+          environment: undefined # not required. Register with a specific environment in the destination org. Used with Red Hat Satellite 6.x or Katello
+          force_register: no # not required. Register the system even if it is already registered
+          state: present # not required. choices: present;absent. whether to register and subscribe (C(present)), or unregister (C(absent)) a system
+          server_proxy_user: undefined # not required. Specify a user for HTTP proxy with basic authentication
+          server_proxy_hostname: undefined # not required. Specify a HTTP proxy hostname

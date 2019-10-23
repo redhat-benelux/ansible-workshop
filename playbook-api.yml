@@ -1,0 +1,21 @@
+---
+- name: playing with APIs
+  hosts: dev
+  gather_facts: false
+
+  vars_files:
+    - vault.yml
+
+  tasks:
+  - pause:
+      seconds: 5
+
+  - name: API call
+    uri:
+      url: https://notify.example.org/message?token={{ token }}
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: 
+        message: 'Hello world!'
+      body_format: json

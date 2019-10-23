@@ -1,0 +1,16 @@
+---
+- name: playing with facts
+  hosts: all
+  gather_facts: true
+
+  tasks:
+  - debug:
+      var: ansible_facts
+
+  - debug:
+      msg: Less than 2000mb
+    when: ansible_memtotal_mb <= 2000
+
+  - debug:
+      msg: More than 2000mb
+    when: ansible_memtotal_mb >= 2000

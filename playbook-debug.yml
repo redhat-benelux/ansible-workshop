@@ -1,0 +1,10 @@
+---
+- name: playing with debug
+  hosts: dev
+  tasks:
+  - name: command
+    shell: echo Hello world
+    register: output
+
+  - debug:
+      var: output

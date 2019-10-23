@@ -1,0 +1,343 @@
+== Ansible Advanced Workshop
+
+=== Documentation
+
+https://docs.ansible.com
+
+From CLI: `ansible-doc -l`
+
+=== Installation
+
+RHEL: `yum install ansible`
+
+Fedora: `dnf install ansible`
+
+=== Inventory
+
+An example **static** inventory file:
+
+```
+[group1]
+node1
+node2
+
+[group2]
+node3
+
+[group1:vars]
+var1: value1
+```
+
+`ansible-inventory --list`
+
+I like `ansible-inventory --graph`
+
+**Dynamic** inventories: https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html[]
+
+
+=== Configuration
+
+- `/etc/ansible/ansible.cfg`
+- `~/.ansible.cfg`
+- `./ansible.cfg`
+
+See which configuration file is used with `ansible --version`.
+
+```
+[defaults]
+inventory = ./inventory
+remote_user = user
+ask_pass = false
+
+[privilege_escalation]
+become = true
+become_method = sudo
+become_user = root
+become_ask_pass = false
+```
+
+You can use `become: true` at the playbook or task level.
+
+You can also use `-b` at the command line.
+
+
+=== Pinging your machines
+
+```
+ansible -m ping -i inventory all
+```
+
+Or with a playbook:
+
+`playbook-ping.yml`
+
+
+=== Idempotence
+
+Use modules as much as possible!
+
+Resort to using `shell` or `command` only when a module is not available.
+
+You can write your own modules! 
+
+https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html[]
+
+
+=== Style guide
+
+Old deprecated way:
+
+```
+- name: http service state
+  service: name=httpd state=started enabled=yes
+```
+
+The good way:
+
+```
+- name: http service state
+  service: 
+    name: httpd
+    state: started
+    enabled: yes
+```
+
+Example:
+
+https://github.com/openshift/openshift-ansible/blob/master/docs/style_guide.adoc
+
+
+=== A simple playbook
+
+`playbook.yml`
+
+
+=== Troubleshooting
+
+- `register` module
+- `debug` module
+- `-v` or `-vv` up to `-vvvv`
+- `--syntax-check`
+- `--check`
+- `--step`
+- `--start-at-task="start httpd service"`
+
+
+=== Variables
+
+Variable precedence:
+
+* command line values (eg “-u user”)
+* role defaults
+* inventory file or script group vars
+* inventory group_vars/all
+* playbook group_vars/all
+* inventory group_vars/*
+* playbook group_vars/*
+* inventory file or script host vars
+* inventory host_vars/*
+* playbook host_vars/*
+* host facts / cached set_facts
+* play vars
+* play vars_prompt
+* play vars_files
+* role vars (defined in role/vars/main.yml)
+* block vars (only for tasks in block)
+* task vars (only for the task)
+* include_vars
+* set_facts / registered vars
+* role (and include_role) params
+* include params
+* extra vars (always win precedence)
+
+`playbook-with-var.yml`
+
+Using variables: "{{ variable_key }}"
+
+Careful! You might need to surround the variable between quotes.
+
+```
+  - name: install package
+    yum:
+      name: "{{ package_name }}"
+      state: latest
+```
+
+```
+  - name: install Python library
+    yum:
+      name: python3_{{ library_name }}
+      state: latest
+```
+
+=== Secrets
+
+Never store secrets in plain text!
+
+`ansible-vault create secret.yml`
+
+```
+password: super_secret
+```
+
+`ansible-playbook playbook-vault.yml --ask-vault-pass`
+
+
+=== Facts
+
+`gather_facts: true`
+
+```
+"ansible_facts": {
+    "_facts_gathered": true,
+    "all_ipv4_addresses": [
+        "192.168.122.132"
+    ],
+    "all_ipv6_addresses": [
+        "fe80::6392:81c2:92fd:af3e"
+    ],
+[...]
+```
+
+`playbook-facts.yml`
+
+NOTE: `setup` module gather facts about remote host: https://docs.ansible.com/ansible/latest/modules/setup_module.html
+
+**Local facts**
+
+`/etc/ansible/facts.d/preferences.fact`
+
+```
+[general]
+org=ibm
+type=small
+```
+
+`ansible -i inventory all -m setup -a "filter=ansible_local"`
+
+`playbook-local-fact.yml`
+
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#local-facts-facts-d[]
+
+
+=== Loops and conditionals
+
+`playbook-loop.yml`
+
+`playbook-facts.yml` (demonstrating the usage of the `when` conditional)
+
+
+=== Handlers
+
+Handlers are triggered when a task **changes** something (appears yellow).
+
+Run `playbook-handler.yml` once, then run again and notice the difference.
+
+IMPORTANT: Make sure the MOTD is in a different state then expected prior to running the first time, to see expected result.
+
+
+=== Running a non-idempotent script
+
+`playbook-script.yml`
+
+`simple-script.sh`
+
+
+=== Fail on purpose
+
+`fail` module.
+
+
+=== Rescue blocks
+
+`playbook-block.yml`
+
+
+=== Jinja2 templates
+
+`playbook-template.yml`
+
+`motd.j2`
+
+
+=== Rolling upgrades
+
+`playbook-rolling.yml`
+
+Now change the `serial` value from `1` to `3`.
+
+When you're doing rolling upgrades of a cluster, you might want to use `any_errors_fatal: True`.
+
+
+=== Limits
+
+`ansible-playbook --limit host1 playbook.yml`
+
+
+=== Roles
+
+Under the `roles` directory (to create if needed):
+
+`ansible-galaxy init my_new_role`
+
+`playbook-role.yml`
+
+
+=== Interacting with APIs
+
+`uri` module!
+
+`ansible-playbook playbook-api.yml --ask-vault-pass`
+
+
+=== In Memory Inventory
+
+Add a host (and alternatively a group) to the ansible-playbook in-memory inventory
+
+https://docs.ansible.com/ansible/latest/modules/add_host_module.html
+
+Typically useful when working with OpenStack, etc.
+
+
+=== Does Ansible has an API?
+
+Tower!
+
+
+=== Galaxy
+
+https://www.ansible.com/community/galaxy[]
+
+
+=== Tooling
+
+Demonstrate vscode + ansible + git plugin.
+
+
+=== Zen of Python
+
+`python -m this`
+
+```
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+```
