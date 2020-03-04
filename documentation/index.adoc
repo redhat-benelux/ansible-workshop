@@ -1,5 +1,7 @@
 == Ansible Advanced Workshop
 
+:toc: 
+
 === Documentation
 
 https://docs.ansible.com
