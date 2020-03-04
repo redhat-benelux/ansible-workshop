@@ -9,6 +9,7 @@ toc::[]
 https://docs.ansible.com
 
 From CLI
+
 - Module list: `ansible-doc -l`
 - Module consultation: `ansible-doc <module name>` 
 - Example: `ansible-doc service`
