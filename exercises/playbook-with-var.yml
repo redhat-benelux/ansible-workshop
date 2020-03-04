@@ -1,5 +1,5 @@
 ---
-- name: install "{{ package_name }}" and start it at boot
+- name: install service and start and enable it at boot
   hosts: all
   gather_facts: no
 
