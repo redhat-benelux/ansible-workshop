@@ -1,22 +1,22 @@
-== Ansible Advanced Workshop
+= Ansible Advanced Workshop
 :toc: 
 :toc-placement!:
 
 toc::[]
 
-=== Documentation
+== Documentation
 
 https://docs.ansible.com
 
 From CLI: `ansible-doc -l`
 
-=== Installation
+== Installation
 
 RHEL: `yum install ansible`
 
 Fedora: `dnf install ansible`
 
-=== Inventory
+== Inventory
 
 An example **static** inventory file:
 
@@ -39,7 +39,7 @@ I like `ansible-inventory --graph`
 **Dynamic** inventories: https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html[]
 
 
-=== Configuration
+== Configuration
 
 - `/etc/ansible/ansible.cfg`
 - `~/.ansible.cfg`
@@ -65,7 +65,7 @@ You can use `become: true` at the playbook or task level.
 You can also use `-b` at the command line.
 
 
-=== Pinging your machines
+== Pinging your machines
 
 ```
 ansible -m ping -i inventory all
@@ -76,7 +76,7 @@ Or with a playbook:
 `playbook-ping.yml`
 
 
-=== Idempotence
+== Idempotence
 
 Use modules as much as possible!
 
@@ -87,7 +87,7 @@ You can write your own modules!
 https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html[]
 
 
-=== Style guide
+== Style guide
 
 Old deprecated way:
 
@@ -111,12 +111,12 @@ Example:
 https://github.com/openshift/openshift-ansible/blob/master/docs/style_guide.adoc
 
 
-=== A simple playbook
+== A simple playbook
 
 `playbook.yml`
 
 
-=== Troubleshooting
+== Troubleshooting
 
 - `register` module
 - `debug` module
@@ -127,7 +127,7 @@ https://github.com/openshift/openshift-ansible/blob/master/docs/style_guide.adoc
 - `--start-at-task="start httpd service"`
 
 
-=== Variables
+== Variables
 
 Variable precedence:
 
@@ -174,7 +174,7 @@ Careful! You might need to surround the variable between quotes.
       state: latest
 ```
 
-=== Secrets
+== Secrets
 
 Never store secrets in plain text!
 
@@ -187,7 +187,7 @@ password: super_secret
 `ansible-playbook playbook-vault.yml --ask-vault-pass`
 
 
-=== Facts
+== Facts
 
 `gather_facts: true`
 
@@ -224,14 +224,14 @@ type=small
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#local-facts-facts-d[]
 
 
-=== Loops and conditionals
+== Loops and conditionals
 
 `playbook-loop.yml`
 
 `playbook-facts.yml` (demonstrating the usage of the `when` conditional)
 
 
-=== Handlers
+== Handlers
 
 Handlers are triggered when a task **changes** something (appears yellow).
 
@@ -240,31 +240,31 @@ Run `playbook-handler.yml` once, then run again and notice the difference.
 IMPORTANT: Make sure the MOTD is in a different state then expected prior to running the first time, to see expected result.
 
 
-=== Running a non-idempotent script
+== Running a non-idempotent script
 
 `playbook-script.yml`
 
 `simple-script.sh`
 
 
-=== Fail on purpose
+== Fail on purpose
 
 `fail` module.
 
 
-=== Rescue blocks
+== Rescue blocks
 
 `playbook-block.yml`
 
 
-=== Jinja2 templates
+== Jinja2 templates
 
 `playbook-template.yml`
 
 `motd.j2`
 
 
-=== Rolling upgrades
+== Rolling upgrades
 
 `playbook-rolling.yml`
 
@@ -273,12 +273,12 @@ Now change the `serial` value from `1` to `3`.
 When you're doing rolling upgrades of a cluster, you might want to use `any_errors_fatal: True`.
 
 
-=== Limits
+== Limits
 
 `ansible-playbook --limit host1 playbook.yml`
 
 
-=== Roles
+== Roles
 
 Under the `roles` directory (to create if needed):
 
@@ -287,14 +287,14 @@ Under the `roles` directory (to create if needed):
 `playbook-role.yml`
 
 
-=== Interacting with APIs
+== Interacting with APIs
 
 `uri` module!
 
 `ansible-playbook playbook-api.yml --ask-vault-pass`
 
 
-=== In Memory Inventory
+== In Memory Inventory
 
 Add a host (and alternatively a group) to the ansible-playbook in-memory inventory
 
@@ -303,22 +303,22 @@ https://docs.ansible.com/ansible/latest/modules/add_host_module.html
 Typically useful when working with OpenStack, etc.
 
 
-=== Does Ansible has an API?
+== Does Ansible has an API?
 
 Tower!
 
 
-=== Galaxy
+== Galaxy
 
 https://www.ansible.com/community/galaxy[]
 
 
-=== Tooling
+== Tooling
 
 Demonstrate vscode + ansible + git plugin.
 
 
-=== Zen of Python
+== Zen of Python
 
 `python -m this`
 
