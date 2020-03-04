@@ -1,5 +1,8 @@
 == Ansible Advanced Workshop
 :toc: 
+:toc-placement!:
+
+toc::[]
 
 === Documentation
 
