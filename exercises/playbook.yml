@@ -3,20 +3,18 @@
   hosts: all
   gather_facts: no
 
-  vars:
-    package_name: httpd
-
   tasks:
   - name: install package
     yum:
-      name: "{{ package_name }}"
+      name: httpd
       state: latest
+
+  - name: start the service 
+    service: 
+      name: httpd
+      state: started 
 
   - name: make sure it starts at boot
     service:
       name: httpd
-      state: started
-
-  - name: display an inventory group var
-    debug:
-      var: key1
+      enabled: yes

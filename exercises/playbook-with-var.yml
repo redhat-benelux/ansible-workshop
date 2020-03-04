@@ -1,0 +1,27 @@
+---
+- name: install service and start and enable it at boot
+  hosts: all
+  gather_facts: no
+
+  vars:
+    package_name: httpd
+
+  tasks:
+  - name: install package
+    yum:
+      name: "{{ package_name }}"
+      state: latest
+
+  - name: start the service
+    service:
+      name: "{{ package_name }}"
+      state: started
+
+  - name: make sure it starts at boot
+    service:
+      name: "{{ package_name }}"
+      enabled: yes
+
+  - name: display an inventory group var
+    debug:
+      var: key1
