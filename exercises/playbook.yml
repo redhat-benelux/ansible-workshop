@@ -9,7 +9,12 @@
       name: httpd
       state: latest
 
+  - name: start the service 
+    service: 
+      name: httpd
+      state: started 
+
   - name: make sure it starts at boot
     service:
       name: httpd
-      state: started
+      enabled: yes
