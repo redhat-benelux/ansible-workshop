@@ -4,21 +4,22 @@
 
 toc::[]
 
-== Documentation
-
-https://docs.ansible.com
-
-From CLI
-
-- Module list: `ansible-doc -l`
-- Module consultation: `ansible-doc <module name>` 
-- Example: `ansible-doc service`
-
 == Installation
+Link to installation document: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
-RHEL: `yum install ansible`
+CentOS/RHEL: `yum install ansible`
+Note: to enable repositories (EPEL or RHEL), check above documentation for reference.
 
 Fedora: `dnf install ansible`
+
+== Documentation
+Link to online documentation tree: https://docs.ansible.com
+
+From CLI after install Ansible:
+
+- Module list: `ansible-doc -l`
+- Module consultation: `ansible-doc <module name>`
+- Example: `ansible-doc service`
 
 == Inventory
 
