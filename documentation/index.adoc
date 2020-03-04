@@ -23,23 +23,61 @@ From CLI after install Ansible:
 
 == Inventory
 
-An example **static** inventory file:
+Inventory can take an INI or YAML format.
 
+An example for a **static** inventory file
+
+INI format +
 ```
+node9
+
 [group1]
 node1
 node2
 
 [group2]
-node3
+node3 http_port=80
+
+[group3]
+node[10:20]
+
+[prod]
+group1
+group3
 
 [group1:vars]
 var1: value1
 ```
 
-`ansible-inventory --list`
+YAML format +
+```
+all:
+  hosts:
+    node9:
+  children:
+    group1:
+      hosts:
+        node1:
+        node2:
+      vars:
+        var1: value1
+    group2:
+      hosts:
+        node3:
+          http_port: 80
+    group3:
+      hosts:
+        node[10:20]:
+    prod:
+      children:
+        group1:
+        group3:  
+```
 
-I like `ansible-inventory --graph`
+To ensure proper configuration and outcome, followings can be used: 
+
+- simple json inventory output: `ansible-inventory --list`
+- I like `ansible-inventory --graph`
 
 **Dynamic** inventories: https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html[]
 
