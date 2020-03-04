@@ -7,7 +7,7 @@ toc::[]
 == Installation
 Link to installation document: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
-CentOS/RHEL: `yum install ansible`
+CentOS/RHEL: `yum install ansible` +
 Note: to enable repositories (EPEL or RHEL), check above documentation for reference.
 
 Fedora: `dnf install ansible`
