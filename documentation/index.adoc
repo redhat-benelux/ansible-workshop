@@ -76,8 +76,8 @@ all:
 
 To ensure proper configuration and outcome, followings can be used: 
 
-- simple json inventory output: `ansible-inventory --list`
-- I like `ansible-inventory --graph`
+- json inventory output: `ansible-inventory --list`
+- list inventory output: `ansible-inventory --graph`
 
 **Dynamic** inventories: https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html[]
 
