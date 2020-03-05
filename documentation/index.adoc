@@ -121,9 +121,8 @@ Or with a playbook:
 
 == Idempotence
 
-Use modules as much as possible!
-
-Resort to using `shell` or `command` only when a module is not available.
+- Use modules as much as possible!
+- Resort to using `shell` or `command` only when a module is not available.
 
 
 [quote, Jason Edelman, "Network Automation with Ansible" from O'Reilly Media]
