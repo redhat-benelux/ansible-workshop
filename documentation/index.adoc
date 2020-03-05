@@ -4,37 +4,80 @@
 
 toc::[]
 
-== Documentation
-
-https://docs.ansible.com
-
-From CLI: `ansible-doc -l`
-
 == Installation
+Link to installation document: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
-RHEL: `yum install ansible`
+CentOS/RHEL: `yum install ansible` +
+Note: to enable repositories (EPEL or RHEL), check above documentation for reference.
 
 Fedora: `dnf install ansible`
 
+== Documentation
+Link to online documentation tree: https://docs.ansible.com
+
+From CLI after install Ansible:
+
+- Module list: `ansible-doc -l`
+- Module consultation: `ansible-doc <module name>`
+- Example: `ansible-doc service`
+
 == Inventory
 
-An example **static** inventory file:
+Inventory can take an INI or YAML format.
 
+An example for a **static** inventory file
+
+INI format +
 ```
+node9
+
 [group1]
 node1
 node2
 
 [group2]
-node3
+node3 http_port=80
+
+[group3]
+node[10:20]
+
+[prod]
+group1
+group3
 
 [group1:vars]
 var1: value1
 ```
 
-`ansible-inventory --list`
+YAML format +
+```
+all:
+  hosts:
+    node9:
+  children:
+    group1:
+      hosts:
+        node1:
+        node2:
+      vars:
+        var1: value1
+    group2:
+      hosts:
+        node3:
+          http_port: 80
+    group3:
+      hosts:
+        node[10:20]:
+    prod:
+      children:
+        group1:
+        group3:  
+```
 
-I like `ansible-inventory --graph`
+To ensure proper configuration and outcome, followings can be used: 
+
+- json inventory output: `ansible-inventory --list`
+- list inventory output: `ansible-inventory --graph`
 
 **Dynamic** inventories: https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html[]
 
@@ -78,14 +121,14 @@ Or with a playbook:
 
 == Idempotence
 
-Use modules as much as possible!
+- Use modules as much as possible!
+- Resort to using `shell` or `command` only when a module is not available.
 
-Resort to using `shell` or `command` only when a module is not available.
 
-You can write your own modules! 
-
-https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html[]
-
+[quote, Jason Edelman, "Network Automation with Ansible" from O'Reilly Media]
+____
+Being idempotent allows the defined task to run one time or a thousand times without having an adverse effect on the target system, only ever making the change once. In other words, if a change is required to get the system into its desired state, the change is made; and if the device is already in its desired state, no change is made. This is unlike most traditional custom scripts and the copy and pasting of CLI commands into a terminal window. When the same command or script is executed repeatedly on the same system, errors are (sometimes) raised.
+____ 
 
 == Style guide
 
@@ -345,3 +388,9 @@ If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
+
+== Write module
+
+You can write your own modules! 
+
+https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html[]
