@@ -121,19 +121,15 @@ Or with a playbook:
 
 == Idempotence
 
-[quote, Jason Edelman, Network Automation with Ansible]
-____
-Being idempotent allows the defined task to run one time or a thousand times without having an adverse effect on the target system, only ever making the change once. In other words, if a change is required to get the system into its desired state, the change is made; and if the device is already in its desired state, no change is made. This is unlike most traditional custom scripts and the copy and pasting of CLI commands into a terminal window. When the same command or script is executed repeatedly on the same system, errors are (sometimes) raised.
-____
-
 Use modules as much as possible!
 
 Resort to using `shell` or `command` only when a module is not available.
 
-You can write your own modules! 
 
-https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html[]
-
+[quote, Jason Edelman, Network Automation with Ansible]
+____
+Being idempotent allows the defined task to run one time or a thousand times without having an adverse effect on the target system, only ever making the change once. In other words, if a change is required to get the system into its desired state, the change is made; and if the device is already in its desired state, no change is made. This is unlike most traditional custom scripts and the copy and pasting of CLI commands into a terminal window. When the same command or script is executed repeatedly on the same system, errors are (sometimes) raised.
+____ 
 
 == Style guide
 
@@ -393,3 +389,9 @@ If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
+
+== Write module
+
+You can write your own modules! 
+
+https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html[]
