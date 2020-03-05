@@ -122,7 +122,8 @@ Or with a playbook:
 == Idempotence
 
 Snip from https://www.oreilly.com/content/network-automation-with-ansible/
-```...Being idempotent allows the defined task to run one time or a thousand times without having an adverse effect on the target system, only ever making the change once. In other words, if a change is required to get the system into its desired state, the change is made; and if the device is already in its desired state, no change is made. This is unlike most traditional custom scripts and the copy and pasting of CLI commands into a terminal window. When the same command or script is executed repeatedly on the same system, errors are (sometimes) raised...
+```
+Being idempotent allows the defined task to run one time or a thousand times without having an adverse effect on the target system, only ever making the change once. In other words, if a change is required to get the system into its desired state, the change is made; and if the device is already in its desired state, no change is made. This is unlike most traditional custom scripts and the copy and pasting of CLI commands into a terminal window. When the same command or script is executed repeatedly on the same system, errors are (sometimes) raised.
 ```
 
 Use modules as much as possible!
