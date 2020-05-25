@@ -1,0 +1,16 @@
+---
+- name: playing with advanced loop
+  hosts: localhost
+
+  gather_facts: false
+
+  vars:
+    my_dictionary:
+      - {"key1":"value1"}
+      - {"key2":"value2"}
+
+  tasks:
+  - name: display key and values
+    debug:
+      msg: "The value for {{ item.key }} is {{ item.value }}"
+    with_dict: "{{ my_dictionary }}"
