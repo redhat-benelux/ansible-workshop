@@ -271,7 +271,9 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#loca
 
 `playbook-loop.yml`
 
-`playbook-facts.yml` (demonstrating the usage of the `when` conditional)
+`playbook-facts.yml`: demonstrating the usage of the `when` conditional
+
+`playbook-loop-advanced.yml`: loops over a dictionary stored in a variable
 
 
 == Handlers
