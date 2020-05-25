@@ -46,7 +46,7 @@ group1
 group3
 
 [group1:vars]
-var1: value1
+var1=value1
 ```
 
 YAML format +
