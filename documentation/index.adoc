@@ -161,13 +161,13 @@ https://github.com/openshift/openshift-ansible/blob/master/docs/style_guide.adoc
 
 == Troubleshooting
 
-- `register` module
-- `debug` module
-- `-v` or `-vv` up to `-vvvv`
-- `--syntax-check`
-- `--check`
-- `--step`
-- `--start-at-task="start httpd service"`
+- `register` module: store the output of a task to use/investigate laster
+- `debug` module: display the content of a var
+- `-v` or `-vv` up to `-vvvv`: to be used with `ansible-playbook`
+- `--syntax-check`: syntax checking
+- `--check`: "dry-run" or "noop" mode
+- `--step`: take a pause at every task
+- `--start-at-task="start httpd service"`: start from a specific task of the playbook
 
 
 == Variables
@@ -367,11 +367,16 @@ https://docs.ansible.com/ansible/latest/modules/add_host_module.html
 
 Typically useful when working with OpenStack, etc.
 
+== Overriding the changed result 
+
+`changed_when: "output.rc != 2"`
+
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#overriding-the-changed-result
+
 
 == Does Ansible has an API?
 
 Tower!
-
 
 == Galaxy
 
