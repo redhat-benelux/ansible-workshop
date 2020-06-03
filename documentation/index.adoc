@@ -269,11 +269,11 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#loca
 
 == Loops and conditionals
 
-`playbook-loop.yml`
-
-`playbook-facts.yml`: demonstrating the usage of the `when` conditional
+`playbook-loop.yml`: loop over a list
 
 `playbook-loop-advanced.yml`: loops over a dictionary stored in a variable
+
+`playbook-facts.yml`: demonstrating the usage of the `when` conditional
 
 
 == Handlers
@@ -307,6 +307,10 @@ IMPORTANT: Make sure the MOTD is in a different state then expected prior to run
 `playbook-template.yml`
 
 `motd.j2`
+
+== Timestamps
+
+`playbook-timestamp.yml`
 
 
 == Rolling upgrades

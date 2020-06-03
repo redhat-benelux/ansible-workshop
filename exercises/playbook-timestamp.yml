@@ -1,0 +1,10 @@
+---
+- name: playing with timestamps
+  hosts: all
+
+  gather_facts: true
+
+  tasks:
+  - name: timestamps
+    debug:
+      var: ansible_date_time.date

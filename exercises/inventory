@@ -1,17 +1,18 @@
-[dev]
-dev ansible_host=192.168.122.132
-
-[stage]
-stage ansible_host=192.168.122.105
-
-[prd]
-prd ansible_host=192.168.122.143
-
-[dev:vars]
-key1=value1
-
-[stage:vars]
-key1=value2
-
-[prd:vars]
-key1=value3
+192.168.200.13
+#[dev]
+#dev ansible_host=192.168.122.132
+#
+#[stage]
+#stage ansible_host=192.168.122.105
+#
+#[prd]
+#prd ansible_host=192.168.122.143
+#
+#[dev:vars]
+#key1=value1
+#
+#[stage:vars]
+#key1=value2
+#
+#[prd:vars]
+#key1=value3
