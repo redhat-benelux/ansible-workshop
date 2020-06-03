@@ -2,11 +2,22 @@
 - name: multiline
   hosts: all
 
+  gather_facts: false
+
+  vars:
+    key: |
+      multi
+      line
+      value
+
   tasks:
-  - name: debug multiline
-    lineinfile:
-      line: |
+  - name: display multiline msg
+    debug:
+      msg: |
         This
         Is
         Multiline
-      path: /tmp/test
+
+  - name: display multiline var
+    debug:
+      var: key
