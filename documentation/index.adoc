@@ -217,7 +217,7 @@ Careful! You might need to surround the variable between quotes.
       state: latest
 ```
 
-== Secrets
+== Storing secrets with vaults
 
 Never store secrets in plain text!
 
@@ -232,7 +232,7 @@ password: super_secret
 
 == Facts
 
-`gather_facts: true`
+`gather_facts: true` (default is true)
 
 ```
 "ansible_facts": {
@@ -326,6 +326,12 @@ When you're doing rolling upgrades of a cluster, you might want to use `any_erro
 
 `ansible-playbook --limit host1 playbook.yml`
 
+
+== Performances
+
+By default, Ansible runs each task on all hosts affected by a play before starting the next task on any host, using 5 forks.
+
+`forks: 5` in `ansible.cfg`
 
 == Roles
 
