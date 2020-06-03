@@ -12,6 +12,10 @@
     register: script_output
     ignore_errors: true
 
+  - name: display the content of script_output
+    debug:
+      var: script_output
+
   - name: run this task if the script fails
     debug:
       msg: this message is displayed because the script failed
