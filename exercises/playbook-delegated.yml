@@ -1,0 +1,22 @@
+---
+- name: delegating some tasks
+  hosts: all
+
+  tasks:
+  - name: run a task against the nodes of the inventory
+    command: hostname
+    register: output_non_delegated
+
+  - name: display the output
+    debug:
+      var: output_non_delegated.stdout_lines
+
+  - name: run a task against another node
+    command: hostname
+    register: output_delegated
+    delegate_to: localhost
+
+  - name: display the output
+    debug:
+      var: output_delegated.stdout_lines
+    delegate_to: localhost

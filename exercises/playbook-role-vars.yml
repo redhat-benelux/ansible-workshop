@@ -1,0 +1,5 @@
+---
+- name: taking advantage of roles
+  hosts: all
+  roles:
+  - { role: role_with_vars, counter: 42 }

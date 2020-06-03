@@ -1,0 +1,12 @@
+---
+- name: multiline
+  hosts: all
+
+  tasks:
+  - name: debug multiline
+    lineinfile:
+      line: |
+        This
+        Is
+        Multiline
+      path: /tmp/test

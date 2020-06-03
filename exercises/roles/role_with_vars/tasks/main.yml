@@ -1,0 +1,4 @@
+---
+- name: display counter value
+  debug:
+    var: counter

@@ -335,6 +335,16 @@ Under the `roles` directory (to create if needed):
 
 `playbook-role.yml`
 
+== Delegating jobs
+
+By default, playbooks are run against an inventory
+
+```
+hosts: all
+```
+
+`playbook-delegated.yml`
+
 
 == Interacting with APIs
 

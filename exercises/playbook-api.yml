@@ -1,6 +1,8 @@
 ---
 - name: playing with APIs
-  hosts: dev
+
+  # you probably want to interact with APIs from the localhost
+  hosts: localhost
   gather_facts: false
 
   vars_files:
