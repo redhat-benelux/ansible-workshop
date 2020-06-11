@@ -1,10 +1,18 @@
 ---
 - name: playing with debug
-  hosts: dev
+  hosts: localhost
+
+  gather_facts: false
+
   tasks:
   - name: command
     shell: echo Hello world
     register: output
 
-  - debug:
+  - name: debug with var
+    debug:
       var: output
+
+  - name: debug with msg
+    debug:
+      msg: this is the stdout of the command {{ output.stdout_lines }}
