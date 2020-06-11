@@ -8,3 +8,18 @@
     loop:
       - user1
       - user2
+
+### Passing the list as argument to the command line
+# 
+# Ansible-playbook idm_list.yml -e '{"srv": [1,2,3]}'
+# 
+# ---      
+# - name: iterate over list
+#   hosts: localhost
+#          
+#   gather_facts: false
+#          
+#   tasks: 
+#   - debug:
+#       var: item
+#     loop: "{{ srv }}"
