@@ -3,11 +3,8 @@
   hosts: all
   gather_facts: no
 
-#  include_vars:
-#    file: vault.yml
-
   vars_files:
-    - vault.yml
+    - secret.yml
 
   tasks:
   - name: display a secret

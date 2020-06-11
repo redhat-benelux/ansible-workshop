@@ -211,8 +211,6 @@ Variable precedence from least to greatest (the last listed variables winning pr
 * include params
 * extra vars (always win precedence)
 
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
-
 `playbook-with-var.yml`
 
 Using variables: "{{ variable_key }}"
@@ -230,15 +228,6 @@ Careful! You might need to surround the variable between quotes.
   - name: install Python library
     yum:
       name: python3_{{ library_name }}
-      state: latest
-```
-
-This is OK too:
-
-```
-  - name: install Python library
-    yum:
-      name: "python3_{{ library_name }}"
       state: latest
 ```
 

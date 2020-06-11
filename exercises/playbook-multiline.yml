@@ -1,0 +1,23 @@
+---
+- name: multiline
+  hosts: all
+
+  gather_facts: false
+
+  vars:
+    key: |
+      multi
+      line
+      value
+
+  tasks:
+  - name: display multiline msg
+    debug:
+      msg: |
+        This
+        Is
+        Multiline
+
+  - name: display multiline var
+    debug:
+      var: key
