@@ -327,6 +327,17 @@ IMPORTANT: Make sure the MOTD is in a different state then expected prior to run
 `playbook-block.yml`
 
 
+== Tags
+
+`playbook-tags.yml`
+
+```
+ansible-playbook playbook-tags.yml -t red
+ansible-playbook playbook-tags.yml -t hat
+ansible-playbook playbook-tags.yml -t "red","hat" 
+```
+
+
 == Jinja2 templates
 
 `playbook-template.yml`
