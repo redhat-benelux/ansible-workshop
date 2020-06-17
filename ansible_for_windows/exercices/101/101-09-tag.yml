@@ -1,0 +1,23 @@
+---
+- name: playing with tags
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - name: first task
+    shell: echo hello Jo
+    tags: jo
+
+  - name: second task
+    shell: echo hello Jane
+    tags: jane
+
+  - name: third task
+    shell: echo Jo is the best
+    tags: jo
+
+  - name: fourth take
+    shell: echo Jane is the best
+    tags: jane
+
+

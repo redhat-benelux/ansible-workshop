@@ -1,0 +1,26 @@
+---
+- name: playing with facts
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    packages: git
+
+  tasks:
+  - debug: 
+      msg: "My package is {{ packages }}"
+  - debug: 
+      msg: "My packages is {{ packages }}"
+    vars:
+      packages:
+        - httpd
+        - httpd-tools
+  - debug: 
+      msg: "My packages is {{ item }}"
+    loop: "{{ packages }}"
+    vars:
+      packages:
+        - httpd
+        - httpd-tools
+  - debug: 
+      msg: "My package is still {{ packages }}"

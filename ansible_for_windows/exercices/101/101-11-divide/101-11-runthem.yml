@@ -1,0 +1,5 @@
+---
+- import_playbook: 101-11-install.yml
+- import_playbook: 101-11-configure.yml
+  when: role == "web"
+- import_playbook: 101-11-service.yml

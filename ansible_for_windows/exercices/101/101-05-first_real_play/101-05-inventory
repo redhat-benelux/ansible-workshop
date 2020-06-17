@@ -1,0 +1,17 @@
+[mydb]
+db1     ansible_host=10.1.2.3
+db2     ansible_host=10.1.2.4
+
+[myweb]
+web1    ansible_host=myhost01.mydomain.com
+web2    ansible_host=myhost02.mydomain.com
+
+[mydb:vars]
+packages="mysql"
+service="mysqld"
+role="db"
+
+[myweb:vars]
+packages="httpd,httpd-tools"
+service="httpd"
+role="web"

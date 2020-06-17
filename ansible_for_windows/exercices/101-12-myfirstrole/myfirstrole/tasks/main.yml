@@ -1,0 +1,11 @@
+---
+- name: install service 
+  yum:
+    name: "{{ packages }}"
+  notify: restart service
+
+- name: deploy index test template
+  template: 
+    src: index.j2
+    dest: /var/www/html/index.html
+  when: role == "web"

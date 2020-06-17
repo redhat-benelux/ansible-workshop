@@ -1,0 +1,13 @@
+---
+- name: install services to db and http hosts
+  hosts: all
+  gather_facts: true
+
+  tasks:
+  - name: deploy index test template
+    template: 
+      src: 101-4-index.j2
+      dest: /var/www/html/index.html
+    # when: role == "web"
+  #   when: group_names == ['myweb']
+      

@@ -1,0 +1,9 @@
+---
+- hosts: localhost  
+  gather_facts: false
+
+  vars:
+    - test: "{{ 'oof' if myvar == 'foo' else 'rab' }}"
+  tasks:
+  - debug:
+      msg: "myvar is {{ myvar}} giving the value {{ test }}"

@@ -1,0 +1,5 @@
+[myweb]
+192.168.122.11  role=web
+
+[mydb]
+192.168.122.11  role=web

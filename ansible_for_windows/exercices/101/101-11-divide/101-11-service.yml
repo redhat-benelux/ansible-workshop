@@ -1,0 +1,11 @@
+---
+- name: install services to db and http hosts
+  hosts: all
+  gather_facts: true
+
+  tasks:
+  - name: start service
+    service: 
+      name: "{{ service }}"
+      enabled: yes
+      state: started

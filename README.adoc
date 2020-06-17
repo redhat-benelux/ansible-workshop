@@ -1,1 +1,19 @@
-documentation/index.adoc
+= Red Hat Benelux Ansible Workshops
+
+The Red Hat Benelux Ansible Workshops project is intended for effectively demonstrating Ansible's capabilities through Consulting Customer engagements with the Red Hat Benelux Services Team.
+
+== Workshops
+
+[cols="2,1,1"]
+|=== 
+| Name |Content | Exercises
+
+|Ansible Advanced Workshop
+|https://github.com/redhat-benelux/ansible-workshop/tree/master/ansible_advanced_workshop[Workshop]
+|https://github.com/redhat-benelux/ansible-workshop/tree/master/ansible_advanced_workshop/exercises[Exercises]
+
+|Ansible for Windows
+|https://github.com/redhat-benelux/ansible-workshop/tree/master/ansible_for_windows[Workshop]
+|https://github.com/redhat-benelux/ansible-workshop/tree/master/ansible_for_windows[Exercises]
+
+

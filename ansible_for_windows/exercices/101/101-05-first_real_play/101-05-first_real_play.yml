@@ -1,0 +1,22 @@
+---
+- name: install services to db and http hosts
+  hosts: all
+  gather_facts: true
+
+  tasks:
+  - name: install service
+    yum:
+      name: "{{ packages }}"
+      state: latest
+  - name: start service
+    service: 
+      name: "{{ service }}"
+      enabled: yes
+      state: started
+  - name: deploy index test template
+    template: 
+      src: 101-4-index.j2
+      dest: /var/www/html/index.html
+    when: role == "web"
+      
+      

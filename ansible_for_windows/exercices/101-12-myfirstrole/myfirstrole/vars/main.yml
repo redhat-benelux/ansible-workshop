@@ -1,0 +1,3 @@
+---
+packages: "{{ 'httpd,httpd-tools' if role == 'web' else 'mysql' }}"
+service: "{{ 'httpd' if role == 'web' else 'mysqld' }}"

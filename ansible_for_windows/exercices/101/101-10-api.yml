@@ -1,0 +1,32 @@
+---
+- name: playing with APIs
+  hosts: localhost
+  gather_facts: false
+
+  # vars_files:
+  #   - vault.yml
+
+  tasks:
+
+  - name: Verify a simple API GET  
+    uri:
+      url: https://192.168.122.11/api/v2
+      validate_certs: no
+    register: apiresponse
+
+  - debug:
+      var: apiresponse
+
+  - name: Verify JOB status
+    uri:
+      url: https://192.168.122.11/api/v2/jobs/2
+      method: GET
+      validate_certs: no
+      user: admin
+      password: #usevault or a token
+      force_basic_auth: yes
+      body_format: json
+    register: jobstatus
+
+  - debug:
+      var: jobstatus

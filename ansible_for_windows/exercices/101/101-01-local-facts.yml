@@ -1,0 +1,10 @@
+---
+- name: playing with facts
+  hosts: localhost
+  gather_facts: true
+
+  tasks:
+  - debug: 
+      var: ansible_facts 
+  - debug: 
+      msg: "Host {{ ansible_hostname }} runs {{ ansible_distribution }}"
